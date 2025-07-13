@@ -1,13 +1,27 @@
-function generateStory() {
-  const input = document.getElementById("storyInput").value.trim();
-  const outputDiv = document.getElementById("output");
+async function generateStory() {
+  const prompt = document.getElementById('storyInput').value;
+  const outputDiv = document.getElementById('output');
 
-  if (input === "") {
-    outputDiv.innerText = "Please enter a story prompt first!";
+  if (!prompt) {
+    outputDiv.textContent = '❗ Please enter a story prompt!';
     return;
   }
 
-  const response = `✨ Once upon a time, based on your prompt: "${input}", a magical story was created... (AI response will be added soon!)`;
+  outputDiv.textContent = '⏳ Generating your magical story...';
 
-  outputDiv.innerText = response;
+  try {
+    const response = await fetch('https://your-backend-url.com/api/story', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ prompt })
+    });
+
+    const data = await response.json();
+    outputDiv.textContent = '✨ ' + data.story;
+  } catch (error) {
+    outputDiv.textContent = '⚠️ Failed to generate story. Please try again later.';
+    console.error(error);
+  }
 }
