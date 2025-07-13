@@ -1,13 +1,52 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MagicStory AI</title>
-</head>
-<body>
-  <h1>Welcome to MagicStory AI</h1>
-  <p>This is an AI-powered storytelling website for kids with images, voice, and video!</p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MagicStory AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gradient-to-b from-blue-100 to-purple-100 min-h-screen flex items-center justify-center px-4">
+    <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-md text-center space-y-4">
+      <h1 class="text-3xl font-bold text-purple-700">MagicStory AI</h1>
+      <p class="text-gray-600">Enter a prompt or use voice to generate a magical story.</p>
+
+      <textarea
+        id="storyPrompt"
+        placeholder="Type your story prompt here..."
+        class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+        rows="4"
+      ></textarea>
+
+      <button
+        class="bg-purple-600 text-white px-4 py-2 rounded-xl hover:bg-purple-700 transition"
+        onclick="generateStory()"
+      >
+        🎬 Generate Story
+      </button>
+
+      <button
+        class="bg-gray-200 text-gray-800 px-4 py-2 rounded-xl hover:bg-gray-300 transition"
+        onclick="startVoiceInput()"
+      >
+        🎙️ Speak Prompt
+      </button>
+
+      <p id="output" class="text-sm text-gray-700 mt-2"></p>
+    </div>
+
+    <script>
+      function generateStory() {
+        const prompt = document.getElementById("storyPrompt").value;
+        document.getElementById("output").innerText =
+          "Story will be generated here from: " + prompt;
+        // Future: Call AI backend to generate story
+      }
+
+      function startVoiceInput() {
+        alert("Voice input feature coming soon! 🎤");
+        // Future: Use Web Speech API or AI voice
+      }
+    </script>
+  </body>
 </html>
